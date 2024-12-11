@@ -1,4 +1,4 @@
-import { Normal } from "../types/types";
+import { Normal } from "../lib/types/types";
 import styles from "./Button.module.css";
 
 type ButtonT = Normal & {

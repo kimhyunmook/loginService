@@ -1,14 +1,15 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import Label from "../components/label";
-import Input from "../components/input";
-import Button from "../components/button";
-import HorizontalRule from "../components/horizontalRule";
-import Link from "../components/link";
+import Label from "@/app/lib/components/label";
+import Input from "@/app/lib/components/input";
+import Button from "@/app/lib/components/button";
+import HorizontalRule from "@/app/lib/components/horizontalRule";
+import Link from "@/app/lib/components/link";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../contexts/authProvider";
+import { useAuth } from "../lib/contexts/authProvider";
+import Image from "next/image";
 
 function LoginPage() {
   const router = useRouter();
@@ -71,7 +72,7 @@ function LoginPage() {
           appearance="secondary"
           as={Link}
         >
-          <img src={"/img/google.svg"} alt="Google" />
+          <Image src="/img/google.svg" alt="Google" width={20} height={20} />
           구글로 시작하기
         </Button>
         <div className={styles.Footer}>

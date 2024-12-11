@@ -1,9 +1,10 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createContext, useContext, useState } from "react";
-import { Normal } from "../types/types";
-import { getMeApi, LoginApi } from "../api/api";
+import { createContext, useContext, useEffect, useState } from "react";
+import { Normal } from "@/app/lib/types/types";
+import { getMeApi, LoginApi } from "@/app/lib/api/api";
 import { useToaster } from "./toasterProvider";
+import { useRouter } from "next/navigation";
 type UserT = {
   id?: string;
   name?: string;
@@ -14,6 +15,7 @@ type UserAuthT = {
   login: (credentials: LoginT) => Promise<void>;
   logout: () => Promise<void>;
   updateMe: (formData: any) => Promise<void>;
+  isLoading: boolean;
 } | null;
 const AuthContext = createContext<UserAuthT>(null);
 
@@ -22,12 +24,17 @@ type LoginT = {
   password: string;
 };
 export function AuthProvider({ children }: Normal) {
-  const [user, setUser] = useState<UserT | null>(() => {
-    const storeUser = localStorage.getItem("user");
-    return storeUser ? JSON.parse(storeUser) : null;
-  });
+  const [user, setUser] = useState<UserT | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  useEffect(() => {
+    setUser(() => {
+      const storeUser = localStorage.getItem("user");
+      setIsLoading(false);
+      return storeUser ? JSON.parse(storeUser) : null;
+    });
+  }, []);
 
-  //   const router = useRouter();
+  const router = useRouter();
   const toast = useToaster();
   async function login({ email, password }: LoginT) {
     const data = await LoginApi({ email, password });
@@ -35,13 +42,15 @@ export function AuthProvider({ children }: Normal) {
       const user = await getMeApi();
       setUser(user);
       localStorage.setItem("user", JSON.stringify(user));
-      return user;
+      toast("info", "로그인 성공했습니다.");
+      router.push("/");
     } else toast("warn", "Id 또는 Password를 확인해주세요");
   }
 
   async function logout() {
     setUser(null);
     localStorage.removeItem("user");
+    toast("info", "로그아웃 되었습니다.");
   }
 
   async function updateMe(formData: any) {
@@ -54,6 +63,7 @@ export function AuthProvider({ children }: Normal) {
         login,
         logout,
         updateMe,
+        isLoading,
       }}
     >
       {children}

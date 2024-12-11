@@ -1,15 +1,15 @@
 "use client";
 import { useState } from "react";
-import Label from "../components/label";
-import Input from "../components/input";
-import Button from "../components/button";
-import HorizontalRule from "../components/horizontalRule";
-import Link from "../components/link";
+import Label from "@/app/lib/components/label";
+import Input from "@/app/lib/components/input";
+import Button from "@/app/lib/components/button";
+import HorizontalRule from "@/app/lib/components/horizontalRule";
+import Link from "@/app/lib/components/link";
 import styles from "./page.module.css";
-import { useToaster } from "../contexts/toasterProvider";
+import { useToaster } from "../lib/contexts/toasterProvider";
 import { useRouter } from "next/navigation";
-import { RegisterApi } from "../api/api";
-import { useAuth } from "../contexts/authProvider";
+import { RegisterApi } from "../lib/api/api";
+import { useAuth } from "../lib/contexts/authProvider";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 function RegisterPage() {
