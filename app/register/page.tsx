@@ -5,11 +5,11 @@ import Input from "@/app/lib/components/input";
 import Button from "@/app/lib/components/button";
 import HorizontalRule from "@/app/lib/components/horizontalRule";
 import Link from "@/app/lib/components/link";
-import styles from "./page.module.css";
-import { useToaster } from "../lib/contexts/toasterProvider";
+import styles from "./styles/page.module.css";
+import { useToaster } from "@/app/lib/contexts/toasterProvider";
 import { useRouter } from "next/navigation";
-import { RegisterApi } from "../lib/api/api";
-import { useAuth } from "../lib/contexts/authProvider";
+import { RegisterApi } from "@/app/lib/api/api";
+import GoogleButton from "@/app/lib/components/googleButton";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 function RegisterPage() {
@@ -21,7 +21,6 @@ function RegisterPage() {
     passwordRepeat: "",
   });
   const toast = useToaster();
-  const { login } = useAuth();
 
   function handleChange(e: any) {
     const { name, value } = e.target;
@@ -46,8 +45,8 @@ function RegisterPage() {
           toast("warn", res.data);
           return;
         } else {
-          await login({ email, password });
-          router.push("/");
+          toast("info", "회원가입 되었습니다.");
+          router.push("/login");
         }
       })
       .catch((err) => {
@@ -58,15 +57,7 @@ function RegisterPage() {
   return (
     <>
       <h1 className={styles.Heading}>회원가입</h1>
-      <Button
-        className={styles.GoogleButton}
-        type="button"
-        appearance="secondary"
-        as={Link}
-      >
-        <img src={"/img/google.svg"} alt="Google" />
-        구글로 시작하기
-      </Button>
+      <GoogleButton />
       <HorizontalRule className={styles.HorizontalRule}>또는</HorizontalRule>
       <form className={styles.Form} onSubmit={handleSubmit}>
         <Label className={styles.Label} htmlFor="name">

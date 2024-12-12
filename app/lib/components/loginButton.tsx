@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
 import Link from "next/link";
-import styles from "./loginButton.module.css";
+import styles from "./styles/loginButton.module.css";
 import { useAuth } from "@/app/lib/contexts/authProvider";
 import { useRouter } from "next/navigation";
 type LoginButtonT = {

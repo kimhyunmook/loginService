@@ -3,8 +3,9 @@
 import React, { createContext, useContext, useState } from "react";
 // import checkImage from "../assets/check.svg";
 import useIsMounted from "../hooks/useIsMounted";
-import styles from "./toasterProvider.module.css";
+import styles from "./styles/toasterProvider.module.css";
 import { Normal } from "../types/types";
+import Image from "next/image";
 
 const ICONS = {
   info: "/img/check.svg",
@@ -28,7 +29,15 @@ function Toast({
 
   return (
     <div className={className} onClick={onClick}>
-      {icon && <img className={styles.Icon} src={icon} alt={type} />}
+      {icon && (
+        <Image
+          className={styles.Icon}
+          src={icon}
+          alt={type}
+          width={16}
+          height={16}
+        />
+      )}
       {message}
     </div>
   );

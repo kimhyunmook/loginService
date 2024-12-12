@@ -1,0 +1,10 @@
+.GoogleButton {
+  width: 100%;
+  display: flex;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  color: #000000;
+}

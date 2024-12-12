@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AvatarImages } from "@/public/avatar/index";
 import styles from "./avatar.module.css";
+import { AvatarT } from "@/app/me/avatar/page";
 
 function Avatar({
   className = "",
@@ -15,28 +16,7 @@ function Avatar({
   withBorder = false,
 }: {
   className?: string;
-  value?: {
-    hairType:
-      | "none"
-      | "long1"
-      | "long2"
-      | "long3"
-      | "short1"
-      | "short2"
-      | "short3";
-    hairColor: "black" | "blonde" | "brown";
-    accessories: "none" | "ballcap" | "earbuds" | "headset" | "nametag";
-    skin: "tone100" | "tone200" | "tone300" | "tone400";
-    clothes:
-      | "collarBasic"
-      | "dressFormal"
-      | "hoodie"
-      | "jacketLeather"
-      | "knitLayered"
-      | "knitVest"
-      | "tshirtBasic"
-      | "tshirtPrinted";
-  };
+  value?: AvatarT;
   withBorder?: boolean;
 }) {
   if (Object.keys(value).length < 5)

@@ -1,5 +1,5 @@
-import { Normal } from "../lib/types/types";
-import styles from "./HorizontalRule.module.css";
+import { Normal } from "@/app/lib/types/types";
+import styles from "./styles/HorizontalRule.module.css";
 
 function HorizontalRule({ className = "", children }: Normal) {
   if (children) {

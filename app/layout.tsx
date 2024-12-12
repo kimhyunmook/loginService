@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./styles/globals.css";
 import Providers from "./lib/contexts/providers";
+import Header from "@/app/lib/components/ui/Header";
+import Container from "./lib/components/layout/Container";
 
 export const metadata: Metadata = {
   title: "Login Service",
@@ -12,10 +14,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const height = "70px";
+  const ContainerStlye = {
+    paddingTop: height,
+    paddingBottom: height,
+  };
   return (
     <html lang="ko">
-      <body className={``}>
-        <Providers>{children}</Providers>
+      <body>
+        <Container style={ContainerStlye}>
+          <Providers>
+            <Header height={height} />
+            {children}
+          </Providers>
+        </Container>
       </body>
     </html>
   );

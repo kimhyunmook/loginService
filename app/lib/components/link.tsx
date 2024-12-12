@@ -1,5 +1,5 @@
-import { Normal } from "../lib/types/types";
-import styles from "./link.module.css";
+import { Normal } from "@/app/lib/types/types";
+import styles from "./styles/link.module.css";
 // import { Link as BaseLink } from 'react-router-dom';
 import BaseLink from "next/link";
 

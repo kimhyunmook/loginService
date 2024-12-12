@@ -1,7 +1,11 @@
 .Link {
   text-decoration: none;
-  color: #b45600;
+  color: #414141;
   font-weight: 500;
+  transition: 0.5s;
+}
+.Link:hover {
+  color: var(--primary-color);
 }
 
 .Link.secondary {

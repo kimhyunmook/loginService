@@ -5,6 +5,7 @@ import { Normal } from "@/app/lib/types/types";
 import { getMeApi, LoginApi } from "@/app/lib/api/api";
 import { useToaster } from "./toasterProvider";
 import { useRouter } from "next/navigation";
+import instance from "../api/instance";
 type UserT = {
   id?: string;
   name?: string;
@@ -12,6 +13,7 @@ type UserT = {
 };
 type UserAuthT = {
   user: UserT | null;
+  avatar: null;
   login: (credentials: LoginT) => Promise<void>;
   logout: () => Promise<void>;
   updateMe: (formData: any) => Promise<void>;
@@ -25,6 +27,7 @@ type LoginT = {
 };
 export function AuthProvider({ children }: Normal) {
   const [user, setUser] = useState<UserT | null>(null);
+  const [avatar, setAvatar] = useState<null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     setUser(() => {
@@ -33,7 +36,14 @@ export function AuthProvider({ children }: Normal) {
       return storeUser ? JSON.parse(storeUser) : null;
     });
   }, []);
-
+  async function getMyAvatar() {
+    const res = await instance.get("/users/me/avatar");
+    const avatar = res.data;
+    setAvatar(avatar);
+  }
+  useEffect(() => {
+    getMyAvatar();
+  }, []);
   const router = useRouter();
   const toast = useToaster();
   async function login({ email, password }: LoginT) {
@@ -60,6 +70,7 @@ export function AuthProvider({ children }: Normal) {
     <AuthContext.Provider
       value={{
         user,
+        avatar,
         login,
         logout,
         updateMe,

@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  letter-spacing: -0.5px;
 }
 
 html {
@@ -10,7 +11,7 @@ html {
 }
 
 :root {
-  --primary-color: #e97000;
+  --primary-color: #0046c7;
   --max-width: 1440px;
 }
 
@@ -21,4 +22,14 @@ body {
 a {
   text-decoration: none;
   color: #000;
+}
+
+#Container:has(#Header) {
+  padding-top: 100px !important;
+}
+
+#Container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7f7f7;
 }

@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import Card from "@/app/lib/components/Card";
+import Card from "@/app/lib/components/layout/Card";
 import Button from "@/app/lib/components/button";
-import styles from "./page.module.css";
+import styles from "./styles/page.module.css";
 import Avatar from "../_avatar/components/avatar";
-import { useToaster } from "../lib/contexts/toasterProvider";
+import { useToaster } from "@/app/lib/contexts/toasterProvider";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import instance from "../lib/api/instance";
+import instance from "@/app/lib/api/instance";
 import Link from "next/link";
-import { useAuth } from "../lib/contexts/authProvider";
+import { useAuth } from "@/app/lib/contexts/authProvider";
 import Image from "next/image";
 
 function MyPage() {
@@ -23,6 +23,7 @@ function MyPage() {
     try {
       const res = await instance.get("/users/me/avatar");
       avatar = res.data;
+      console.log(avatar);
       setAvatar(avatar);
     } catch (err) {
       console.error(err);
@@ -43,7 +44,7 @@ function MyPage() {
   }
   useEffect(() => {
     getMyAvatar();
-    console.log(avatar);
+    // console.log("avatar", avatar);
   }, []);
 
   if (!isLoading && !!!user) {
@@ -51,12 +52,12 @@ function MyPage() {
     router.push("/");
     return null;
   }
-  if (!isLoading && user)
+  if (!isLoading && user && avatar)
     return (
       <>
         <header className={styles.Header}>내 아바타</header>
         <div className={styles.AvatarContainer}>
-          <Link className={styles.AvatarEditLink} href="/me/avatar/edit">
+          <Link className={styles.AvatarEditLink} href="/me/avatar">
             <Image src={"/img/setting.svg"} alt="설정" width={24} height={24} />
           </Link>
           <Avatar className={styles.Avatar} value={avatar} />

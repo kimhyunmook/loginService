@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useEffect, useState } from "react";
-// import { useNavigate } from 'react-router-dom';
 import Label from "@/app/lib/components/label";
 import Input from "@/app/lib/components/input";
 import Button from "@/app/lib/components/button";
-import styles from "./page.module.css";
+import styles from "./styles/page.module.css";
 import { useAuth } from "@/app/lib/contexts/authProvider";
+import { InputChange, Submit } from "@/app/lib/types/types";
+import { useRouter } from "next/navigation";
 
-function SettingPage() {
+function EditPage() {
+  const router = useRouter();
   const [values, setValues] = useState<{
     name: string | undefined;
     email: string | undefined;
@@ -19,7 +21,7 @@ function SettingPage() {
   //   const navigate = useNavigate();
   const { user, updateMe } = useAuth();
 
-  function handleChange(e: any) {
+  function handleChange(e: InputChange) {
     const { name, value } = e.target;
     setValues((prevValues) => ({
       ...prevValues,
@@ -27,11 +29,11 @@ function SettingPage() {
     }));
   }
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: Submit) {
     e.preventDefault();
     const { name, email } = values;
     await updateMe({ name, email });
-    // navigate("/me");
+    router.push("/me");
   }
 
   useEffect(() => {
@@ -78,4 +80,4 @@ function SettingPage() {
   );
 }
 
-export default SettingPage;
+export default EditPage;

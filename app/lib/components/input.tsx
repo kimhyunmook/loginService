@@ -1,11 +1,13 @@
-import { Normal } from "../lib/types/types";
-import styles from "./input.module.css";
+import { Normal } from "@/app/lib/types/types";
+import styles from "./styles/input.module.css";
 
 function Input({ className = "", children, ...rest }: Normal) {
+  console.log(rest);
   return (
-    <input className={`${styles.Input} ${className}`} {...rest}>
+    <div className={`${styles.InputBox} ${className}`}>
+      <input className={`${styles.Input}`} {...rest} />
       {children}
-    </input>
+    </div>
   );
 }
 

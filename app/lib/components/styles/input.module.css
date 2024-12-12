@@ -1,0 +1,22 @@
+.InputBox {
+  display: flex;
+  border: 1px solid #d9d9d9;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.Input {
+  border-radius: 16px;
+  padding: 12px 24px;
+  color: #000000;
+  border: 0;
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+.InputBox:has(.Input:focus) {
+  border: 1px solid var(--primary-color);
+}
+
+.Input::placeholder {
+  color: #8c8c8c;
+}

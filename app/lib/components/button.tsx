@@ -1,5 +1,5 @@
-import { Normal } from "../lib/types/types";
-import styles from "./Button.module.css";
+import { Normal } from "@/app/lib/types/types";
+import styles from "./styles/Button.module.css";
 
 type ButtonT = Normal & {
   as?: React.ElementType;

@@ -1,5 +1,5 @@
 import { Normal } from "@/app/lib/types/types";
-import styles from "./Card.module.css";
+import styles from "./styles/Card.module.css";
 type CardT = Normal & {
   onClick?: React.ReactEventHandler;
 };

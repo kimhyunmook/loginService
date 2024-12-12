@@ -1,0 +1,36 @@
+.Heading {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 40px;
+  text-align: center;
+}
+
+.Label,
+.Input,
+.Button,
+.GoogleButton {
+  display: block;
+  width: 100%;
+}
+
+.Label {
+  margin: 0;
+}
+
+.Input {
+  margin: 8px 0 24px;
+}
+
+.Button {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 40px 0 32px;
+}
+
+.HorizontalRule {
+  margin: 32px 0;
+}
+
+.Footer {
+  text-align: center;
+}

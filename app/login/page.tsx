@@ -6,10 +6,10 @@ import Input from "@/app/lib/components/input";
 import Button from "@/app/lib/components/button";
 import HorizontalRule from "@/app/lib/components/horizontalRule";
 import Link from "@/app/lib/components/link";
-import styles from "./page.module.css";
+import styles from "./styles/page.module.css";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../lib/contexts/authProvider";
-import Image from "next/image";
+import { useAuth } from "@/app/lib/contexts/authProvider";
+import GoogleButton from "@/app/lib/components/googleButton";
 
 function LoginPage() {
   const router = useRouter();
@@ -21,7 +21,6 @@ function LoginPage() {
 
   function handleChange(e: any) {
     const { name, value } = e.target;
-
     setValues((prevValues) => ({
       ...prevValues,
       [name]: value,
@@ -62,19 +61,12 @@ function LoginPage() {
           type="password"
           placeholder="비밀번호"
           value={values.password}
+          min={7}
           onChange={handleChange}
         />
         <Button className={styles.Button}>로그인</Button>
         <HorizontalRule className={styles.HorizontalRule}>또는</HorizontalRule>
-        <Button
-          className={styles.GoogleButton}
-          type="button"
-          appearance="secondary"
-          as={Link}
-        >
-          <Image src="/img/google.svg" alt="Google" width={20} height={20} />
-          구글로 시작하기
-        </Button>
+        <GoogleButton />
         <div className={styles.Footer}>
           회원이 아니신가요? <Link href="/register">회원가입하기</Link>
         </div>

@@ -1,0 +1,23 @@
+.a {
+  font-size: 16px;
+  margin: 15px;
+}
+
+.Header {
+  width: 100%;
+  border-bottom: 1px solid #cecece;
+  background-color: #fff;
+  padding: 0 70px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+.Gnb {
+  width: 100%;
+  display: flex;
+}
+.Left {
+  margin-left: auto;
+}
