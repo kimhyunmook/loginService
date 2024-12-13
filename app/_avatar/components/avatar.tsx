@@ -34,13 +34,6 @@ function Avatar({
       url("${AvatarImages.clothes[value.clothes].src}"),
       url("${AvatarImages.skin[value.skin].src}")
     `;
-  // const backgroundImage = `
-  //   ${withBorder ? `url("/avatar/avatar-border.svg"),` : ""}
-  //   url("/avatar/acc_${value.accessories}.svg"),
-  //   url("/avatar/hair_${value.hairType}_${value.hairColor}.svg"),
-  //   url("/avatar/"),
-  //   url("")
-  // `;
 
   const backgroundSize = `
     ${withBorder ? `100%,` : ""}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState } from "react";
 // import { useNavigate } from 'react-router-dom';
@@ -5,7 +6,7 @@ import instance from "@/app/lib/api/instance";
 import Button from "@/app/lib/components/button";
 import Avatar from "@/app/_avatar/components/avatar";
 import { AvatarImageLabels } from "@/public/avatar/index";
-import AvatarSelector from "@/app/_avatar/components/AvatarSelector";
+import AvatarSelector from "@/app/_avatar/components/avatarSelector";
 import styles from "./styles/page.module.css";
 
 // export type AvatarT = {
