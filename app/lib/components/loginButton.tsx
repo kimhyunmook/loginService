@@ -20,15 +20,15 @@ function LoginButton({
   className,
 }: LoginButtonT) {
   const router = useRouter();
-  if (loginState === undefined)
-    throw new Error("LoginButton태그에 loginState를 추가하세요.");
+  // if (loginState === undefined)
+  //   throw new Error("LoginButton태그에 loginState를 추가하세요.");
   const { logout, isLoading } = useAuth();
   function loginHandle(e: any) {
     e.preventDefault();
     if (loginState) logout();
     else router.push(href);
   }
-  if (!isLoading)
+  if (!!isLoading)
     return (
       <Link
         onClick={loginHandle}

@@ -19,5 +19,18 @@
   display: flex;
 }
 .Left {
+  align-items: center;
   margin-left: auto;
+  display: flex;
+}
+.nameTag {
+  display: flex;
+  align-items: center;
+}
+.nameTag p {
+  font-weight: 500;
+  color: var(--primary_color);
+}
+.nameTag p span {
+  font-weight: 400;
 }

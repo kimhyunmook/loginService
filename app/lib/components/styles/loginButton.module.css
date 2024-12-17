@@ -1,6 +1,7 @@
 .loginButton {
   text-align: center;
   font-weight: 500;
+  height: fit-content;
   color: #fff;
   background-color: var(--primary-color);
   padding: 5px 10px;

@@ -42,7 +42,7 @@ export async function LoginApi({ email, password }: LoginT) {
 export async function getMeApi() {
   try {
     const response = await instance.get("/users/me");
-    return response.data;
+    return await response.data;
   } catch (err) {
     console.log(err);
   }

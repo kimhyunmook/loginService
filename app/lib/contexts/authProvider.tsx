@@ -5,7 +5,8 @@ import { Normal } from "@/app/lib/types/types";
 import { getMeApi, LoginApi } from "@/app/lib/api/api";
 import { useToaster } from "./toasterProvider";
 import { useRouter } from "next/navigation";
-import instance from "../api/instance";
+import { useQueryClient } from "@tanstack/react-query";
+import { QUERY } from "../value";
 type UserT = {
   id?: string;
   name?: string;
@@ -29,23 +30,26 @@ export function AuthProvider({ children }: Normal) {
   const [user, setUser] = useState<UserT | null>(null);
   const [avatar, setAvatar] = useState<null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const queryClient = useQueryClient();
+  const router = useRouter();
+  const toast = useToaster();
+
   useEffect(() => {
     setUser(() => {
       const storeUser = localStorage.getItem("user");
-      setIsLoading(false);
+      // setIsLoading(false);
       return storeUser ? JSON.parse(storeUser) : null;
     });
   }, []);
-  async function getMyAvatar() {
-    const res = await instance.get("/users/me/avatar");
-    const avatar = res.data;
-    setAvatar(avatar);
-  }
-  useEffect(() => {
-    getMyAvatar();
-  }, []);
-  const router = useRouter();
-  const toast = useToaster();
+  // async function getMyAvatar() {
+  //   const res = await instance.get("/users/me/avatar");
+  //   const avatar = res.data;
+  //   setAvatar(avatar);
+  // }
+  // useEffect(() => {
+  //   getMyAvatar();
+  // }, []);
+
   async function login({ email, password }: LoginT) {
     const data = await LoginApi({ email, password });
     if (!!data) {
@@ -58,8 +62,11 @@ export function AuthProvider({ children }: Normal) {
   }
 
   async function logout() {
+    queryClient.removeQueries({
+      queryKey: [QUERY.UESR_INFO, user?.id],
+    });
     setUser(null);
-    localStorage.removeItem("user");
+    // localStorage.removeItem("user");
     toast("info", "로그아웃 되었습니다.");
   }
 
